@@ -1,0 +1,110 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a New List</title>
+</head> -->
+
+<% layout("/layouts/boilerplate")-%>
+
+<body>
+    <h2>Create a New List</h2>
+    <div class="row">
+    <div class="col-8 offset-2">
+    <form action="/listings" method="post" novalidate class="needs-validation">
+        <div>
+        <label for="title" class="form-label">Title</label>
+        <input 
+            type="text" 
+            name="listing[title]" 
+            placeholder="Enter Title" 
+            class="form-control"
+            required
+            >
+            <div class="valid-feedback">Title Looks Good!</div>
+        </div>
+        <br>
+        <div>
+        <label for="description" class="form-label">Description</label>
+        <textarea 
+            type="text" 
+            name="listing[description]" 
+            placeholder="Enter description"
+            class="form-control"
+            required
+            >
+        </textarea>
+        </div>
+        <br>
+        <div class="row">
+        <div class="col-md-4">
+        <label for="price" class="form-label">Price</label>
+        <input 
+            type="number" 
+            name="listing[price]" 
+            placeholder="Enter Price" 
+            class="form-control"
+            required>
+            <div class="invalid-feedback">Price Should be Valid</div>
+        </div>
+        <br>
+        <div class="col-md-8">
+        <label for="location" class="form-label">Location</label>
+        <input 
+            type="text" 
+            name="listing[location]" 
+            placeholder="Enter Location" 
+            class="form-control"
+            required
+            >
+            <div class="invalid-feedback">Enter Correct Location</div>
+        </div>
+        </div>
+        <br>
+        <div>
+        <label for="country" class="form-label">Country</label>
+        <input 
+            type="text" 
+            name="listing[country]" 
+            placeholder="Enter Country" 
+            class="form-control"
+            required
+            >
+            <div class="invalid-feedback">Country not Looks Good!</div>
+        </div>
+        <br>
+        <div>
+        <label for="image" class="form-label">Image</label>
+        <input 
+            type="text" 
+            name="listing[image]" 
+            placeholder="Enter URL" 
+            class="form-control">
+        </div>
+        <br>
+        <br>
+        <button class="btn btn-dark">ADD</button>
+        <br>
+        <br>
+    </form>
+    </div>
+    </div>
+
+        <!-- <form action="/listings" method="post">
+        <input type="text" name="title" placeholder="Enter Title">
+        <br>
+        <textarea type="text" name="description" placeholder="Enter description"></textarea>
+        <br>
+        <input type="number" name="price" placeholder="Enter Price">
+        <br>
+        <input type="text" name="location" placeholder="Enter Location">
+        <br>
+        <input type="text" name="country" placeholder="Enter Country">
+        <br>
+        <input type="text" name="image" placeholder="Enter URL">
+        <br>
+        <button>ADD</button>
+    </form> -->
+</body>
+<!-- </html> -->
