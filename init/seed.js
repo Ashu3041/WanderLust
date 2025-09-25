@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
-import data from "./data.js";
-import Listing from "../models/listing.js";
+const mongoose = require( "mongoose");
+const data = require("./data.js");
+const Listing =require( "../models/listing.js");
 
 
 // DATABASE

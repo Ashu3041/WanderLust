@@ -1,18 +1,22 @@
-import express from "express";
-import Listing from "./models/listing";
-import path from "path";
-import methodOverride from "method-override";
-import ejsMate from "ejs-mate";
-import wrapAsync from "./utils/wrapAsync.js";
-import ExpressError from "./utils/ExpressError.js";
-import dotenv from "dotenv";
+const express = require("express");
+const mongoose = require("mongoose");
+const Listing = require( "./models/listing");
+const path = require("path");
+const methodOverride = require("method-override");
+const ejsMate = require("ejs-mate");
+const wrapAsync = require("./utils/wrapAsync.js");
+const ExpressError = require( "./utils/ExpressError.js");
+const dotenv = require( "dotenv");
+dotenv.config();
 
+
+
+// PORT CONNECTION
 const PORT=process.env.PORT || 8080;
 
 const MONGO_URI= process.env.MONGO_URI
 
 const app=express();
-dotenv.config();
 
 // MODDLEWARES
 app.use(express.urlencoded({extended:true}));
@@ -33,10 +37,6 @@ app.engine("ejs",ejsMate);
 
 
 // // DATABASE
-// async function main() {
-//     await mongoose.connect("mongodb+srv://Ashutosh:Ashu@cluster1.7wfek9d.mongodb.net/Project1?retryWrites=true&w=majority&appName=Cluster1");
-// };
-
 async function main() {
     await mongoose.connect(MONGO_URI);
 }
@@ -54,7 +54,11 @@ app.get("/",(req,res)=>{
     console.log("Hi It is Working");
     res.send("Hello");
 });
+
+
 //Index Route
+
+
 app.get("/listings",wrapAsync(async (req,res)=>{
     let allListings=await Listing.find({});
     res.render("listings/index",{allListings});
@@ -67,6 +71,8 @@ app.get("/listings/new",(req,res)=>{
     res.render("listings/new");
 });
 
+
+
 //Show Route
 
 app.get("/listings/:id",wrapAsync(async(req,res)=>{
@@ -75,7 +81,10 @@ app.get("/listings/:id",wrapAsync(async(req,res)=>{
     res.render("listings/show",{List});
 }));
 
+
 //Create Routes
+
+
 app.post("/listings",wrapAsync(async(req,res)=>{
     // try{
     // let{title,description,price,location,country,image}=req.body;
@@ -108,6 +117,8 @@ app.post("/listings",wrapAsync(async(req,res)=>{
 }));
 
 //Edit
+
+
 app.get("/listings/:id/edit",wrapAsync(async (req,res)=>{
     let {id}=req.params;
     const List=await Listing.findById(id);
@@ -115,6 +126,8 @@ app.get("/listings/:id/edit",wrapAsync(async (req,res)=>{
 }));
 
 // Update Route
+
+
 app.put("/listings/:id",wrapAsync(async (req,res)=>{
     try{
     let {id}=req.params;
@@ -128,6 +141,8 @@ app.put("/listings/:id",wrapAsync(async (req,res)=>{
 }));
 
 // Delete Route
+
+
 app.delete("/listings/:id",wrapAsync(async (req,res)=>{
     try{
     let {id}=req.params;
